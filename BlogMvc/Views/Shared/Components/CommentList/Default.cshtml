@@ -1,0 +1,31 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Comment>
+<div class="comment-top">
+    <h4>Comments</h4>
+    @if (Model.Count() == 0)
+    {
+        <h2 class= "text-danger">There is no comment. Be the first ...</h2>
+    }
+    else
+    {
+        @foreach (var item in Model)
+        {
+
+
+            <div class="media">
+                <img src="images/t1.jpg" alt="" class="img-fluid" />
+                <div class="media-body">
+                    <h5 class="mt-0">@item.CommentUserName</h5>
+                    <p>
+                        @item.CommentContent
+                    </p>
+
+                    <div class="media mt-3">
+                        <a class="d-flex pr-3" href="#">
+                            <img src="~/CoreBlogTem/web/images/t2.jpg" alt="" class="img-fluid" />
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        }}
+    </div>

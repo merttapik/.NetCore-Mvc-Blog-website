@@ -1,0 +1,11 @@
+﻿@using EntityLayer.Concrete
+@model List<Category> 
+@{
+    ViewData["Title"] = "Index";
+}
+@foreach (var item in Model)
+{
+    @item.CategoryName
+}
+
+
