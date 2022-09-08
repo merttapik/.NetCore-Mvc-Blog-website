@@ -29,7 +29,7 @@ namespace BlogMvc.Controllers
             {
                 w.WriterStatus = true;
                 w.WriterAbout = "test";
-                wm.WriterAdd(w);
+                wm.Add(w);
                 return RedirectToAction("Index", "Blog");
             }
             else

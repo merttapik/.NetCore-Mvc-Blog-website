@@ -35,7 +35,7 @@ namespace BusinessLayer.Concrete
 
         public List<Blog> GetListAll()
         {
-            throw new NotImplementedException();
+           return  _blogdal.GetListAll();
         }
         public List<Blog> GetLast3Blog()
         {

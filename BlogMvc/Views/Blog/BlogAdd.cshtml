@@ -25,8 +25,9 @@
         <br />
         @Html.Label("Blog Content")
         @Html.TextAreaFor(x => x.BlogContent, 15, 3, new { @class = "form-control" })
-        @Html.ValidationMessageFor(x => x.BlogContent);
-        <br />
-        <button class="btn btn-info">Save</button>
+    <br />
+        @Html.ValidationMessageFor(x => x.BlogContent );
+        <br /><br />
+        <button type="submit" class="btn btn-gradient-primary mr-2">Add</button>
         }
 

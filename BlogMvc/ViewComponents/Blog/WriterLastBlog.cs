@@ -13,6 +13,7 @@ namespace BlogMvc.ViewComponents.Blog
         BlogManager bm = new BlogManager(new EfBlogRepository());
         public IViewComponentResult Invoke()
         {
+
             var value = bm.GetBlogListByWriter(1);
             return View(value);
         }

@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
@@ -13,25 +14,31 @@ using System.Threading.Tasks;
 
 namespace BlogMvc.Controllers
 {
-    [AllowAnonymous]
+    
     public class BlogController : Controller
     {
         BlogManager bm = new BlogManager(new EfBlogRepository());
         CategoryManager cm = new CategoryManager(new EfCategoryRepository());
+        Context c = new Context();
+        [AllowAnonymous]
         public IActionResult Index()
         {
             var values = bm.GetWithCategory();
             return View(values);
         }
+        [AllowAnonymous]
         public IActionResult BlogDetails(int id)
         {
             ViewBag.i = id;
             var values = bm.GetBlogById(id);
             return View(values);
         }
+        [AllowAnonymous]
         public IActionResult BlogListByWriter()
         {
-            var values = bm.GetListWriterCategory(1);
+            var usermail = User.Identity.Name;
+            var writerId = c.Writers.Where(x => x.WriterName == usermail).Select(y => y.WriterId).FirstOrDefault();
+            var values = bm.GetListWriterCategory(writerId);
             return View(values);
         }
         [HttpGet]
@@ -50,13 +57,24 @@ namespace BlogMvc.Controllers
         [HttpPost]
         public IActionResult BlogAdd(Blog b)
         {
+            var username = User.Identity.Name;
+            var writerId = c.Writers.Where(x => x.WriterName == username).Select(y => y.WriterId).FirstOrDefault();
             BlogValidation bv = new BlogValidation();
             ValidationResult results = bv.Validate(b);
+            List<SelectListItem> categoryValues = (from x in cm.GetListAll()
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.CategoryName,
+                                                       Value = x.CategoryId.ToString()
+                                                   }).ToList();
+            ViewBag.cv = categoryValues;
             if (results.IsValid)
             {
+                
                 b.BlogStatus = true;
                 b.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-                b.WriterId = 1;
+                b.WriterId = writerId;
+               
                 bm.Add(b);
                 return RedirectToAction("BlogListByWriter", "Blog");
             }
@@ -93,7 +111,6 @@ namespace BlogMvc.Controllers
         public IActionResult BlogEdit(Blog blog)
         {
             var blogValue = bm.GetById(blog.BlogId);
-            blog.WriterId = 1;
             blog.BlogCreateDate = DateTime.Parse(blogValue.BlogCreateDate.ToShortDateString());
             blog.BlogStatus = true;
             bm.Update(blog);

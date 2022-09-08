@@ -43,19 +43,48 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <i class="fab fa-linode"></i> Blogger
                     </a>
                 </div>
-                <div class="col-md-4 top-forms text-center mt-lg-3 mt-md-1 mt-0">
-                    <span>Welcome Back!</span>
-                    <span class="mx-lg-4 mx-md-2  mx-1">
-                        <a href="/Login/Index">
-                            <i class="fas fa-lock"></i> Sign In
-                        </a>
-                    </span>
-                    <span>
-                        <a href="/Register/Index">
-                            <i class="far fa-user"></i> Register
-                        </a>
-                    </span>
-                </div>
+                @{
+                    if (User.IsInRole("Admin"))
+                    {
+                        <div class="col-md-4 top-forms text-center mt-lg-3 mt-md-1 mt-0">
+
+                            <span class="mx-lg-4 mx-md-2  mx-1">
+                                <a href="/Admin/Widget/Index">
+                                    <i class="fas fa-book"></i> Admin Panel
+                                </a>
+                            </span>
+                            
+                        </div>
+                    }
+                    else if (User.IsInRole("User"))
+                    {
+                        <div class="col-md-4 top-forms text-center mt-lg-3 mt-md-1 mt-0">
+
+                            <span class="mx-lg-4 mx-md-2  mx-1">
+                                <a href="/DashBoard/Index">
+                                    <i class="far fa-paper-plane"></i>  Profile
+                                </a>
+                            </span>
+
+                        </div>
+                    }
+                    else
+                    { <div class="col-md-4 top-forms text-center mt-lg-3 mt-md-1 mt-0">
+                            <span>Welcome Back!</span>
+                            <span class="mx-lg-4 mx-md-2  mx-1">
+                                <a href="/Login/Index">
+                                    <i class="fas fa-lock"></i> Sign In
+                                </a>
+                            </span>
+                            <span>
+                                <a href="/RegisterUser/Index">
+                                    <i class="far fa-user"></i> Register
+                                </a>
+                            </span>
+                        </div> }
+
+                }
+
                 <div class="col-md-4 log-icons text-right">
 
                     <ul class="social_list1 mt-3">
@@ -105,12 +134,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li class="nav-item">
                             <a class="nav-link" href="/About/Index">About</a>
                         </li>
-                        <li class="nav-item ">
-                            <a class="nav-link"  href="/Blog/Index">
-                                Features
-                            </a>
-                           
-                        </li>
+                     
                         <li class="nav-item">
                             <a class="nav-link" href="/Contact/Index">Contact</a>
                         </li>
