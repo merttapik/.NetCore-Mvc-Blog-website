@@ -1,31 +1,29 @@
 ﻿@using X.PagedList
 @using X.PagedList.Mvc.Core
-@model IPagedList<EntityLayer.Concrete.Blog>
+@model IPagedList<EntityLayer.Concrete.Writer>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<h1>Blogs</h1>
+
+<h1>Authors</h1>
 <table class="table table-bordered">
     <tr>
         <th>#</th>
-        <th>Blog Title</th>
-        <th>Blog Date</th>
-        <th>Blog Category</th>
-        <th>Blog Author</th>
+        <th>Author Name</th>
+        <th>Author Mail</th>
+       
         <th>Make Passive</th>
         <th>Make Active</th>
-      
+
     </tr>
 
     @foreach (var item in Model)
     {
 <tr>
-    <td>@item.BlogId</td>
-    <td>@item.BlogTitle</td>
-    <td>@item.BlogCreateDate</td>
-    <td>@item.Category.CategoryName</td>
-    <td>@item.Writer.WriterName</td>
+    <td>@item.WriterId</td>
+    <td>@item.WriterName</td>
+    <td>@item.WriterMail</td>
     <td><a href="#" class="btn btn-danger">Make Passive</a></td>
     <td><a href="#" class="btn btn-primary">Make Active</a></td>
 
@@ -36,3 +34,4 @@
 <br />
 <br />
 @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
+

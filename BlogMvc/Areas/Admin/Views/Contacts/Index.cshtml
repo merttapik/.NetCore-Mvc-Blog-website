@@ -1,0 +1,150 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<EntityLayer.Concrete.Contact>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@*<h1>Website Message</h1>
+    <table class="table table-bordered">
+        <tr>
+            <th>#</th>
+            <th>From</th>
+            <th>Mail</th>
+            <th>Subject</th>
+            <th>Message</th>
+            <th>Date</th>
+
+            <th>Delete</th>
+
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>@item.ContactId</td>
+        <td>@item.ContactUserName</td>
+        <td>@item.ContactMail</td>
+        <td>@item.ContactSubject</td>
+        <td>@item.ContatMessage</td>
+        <td> @(((DateTime) item.ContactDate).ToString("dd-MMM-yy"))</td>
+
+        <td><a href="#" class="btn btn-danger">Delete</a></td>
+
+
+    </tr>
+        }
+    </table>
+    <br />
+    <br />
+    <br />
+    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))*@
+
+
+
+    <div id="wrapper">
+
+ 
+
+       
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="ibox ">
+                            <div class="ibox-content mailbox-content">
+                                <div class="file-manager">
+                                    <a class="btn btn-block btn-primary compose-mail" href="mail_compose.html">Compose Mail</a>
+                                    <div class="space-25"></div>
+                                    <h5>Folders</h5>
+                                    <ul class="folder-list m-b-md" style="padding: 0">
+                                        <li><a href="mailbox.html"> <i class="fa fa-inbox "></i> Inbox <span class="label label-warning float-right">@ViewBag.v1</span> </a></li>
+                                        <li><a href="mailbox.html"> <i class="fa fa-envelope-o"></i> Send Mail</a></li>
+                                       
+                                    </ul>
+                                    <h5>Categories</h5>
+                                    <ul class="category-list" style="padding: 0">
+                                        <li><a href="#"> <i class="fa fa-circle text-navy"></i> Work </a></li>
+                                        <li><a href="#"> <i class="fa fa-circle text-danger"></i> Documents</a></li>
+                                        <li><a href="#"> <i class="fa fa-circle text-primary"></i> Social</a></li>
+                                        <li><a href="#"> <i class="fa fa-circle text-info"></i> Advertising</a></li>
+                                        <li><a href="#"> <i class="fa fa-circle text-warning"></i> Clients</a></li>
+                                    </ul>
+
+                                    <h5 class="tag-title">Labels</h5>
+                                    <ul class="tag-list" style="padding: 0">
+                                        <li><a href=""><i class="fa fa-tag"></i> Family</a></li>
+                                        <li><a href=""><i class="fa fa-tag"></i> Work</a></li>
+                                        <li><a href=""><i class="fa fa-tag"></i> Home</a></li>
+                                        <li><a href=""><i class="fa fa-tag"></i> Children</a></li>
+                                        <li><a href=""><i class="fa fa-tag"></i> Holidays</a></li>
+                                        <li><a href=""><i class="fa fa-tag"></i> Music</a></li>
+                                        <li><a href=""><i class="fa fa-tag"></i> Photography</a></li>
+                                        <li><a href=""><i class="fa fa-tag"></i> Film</a></li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 animated fadeInRight">
+                        <div class="mail-box-header">
+
+                            <form method="get" action="index.html" class="float-right mail-search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-sm" name="search" placeholder="Search email">
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-sm btn-primary">
+                                            Search
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <h2>
+                                Inbox (@ViewBag.v1)
+                            </h2>
+                            <div class="mail-tools tooltip-demo m-t-md">
+                               
+                                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Refresh inbox"><i class="fa fa-refresh"></i> Refresh</button>
+                                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Mark as read"><i class="fa fa-eye"></i> </button>
+                                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Mark as important"><i class="fa fa-exclamation"></i> </button>
+                                <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Move to trash"><i class="fa fa-trash-o"></i> </button>
+
+                            </div>
+                        </div>
+                        <div class="mail-box p-4">
+
+                            <table class="table table-hover table-mail">
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr class="unread">
+                                            <td class="check-mail">
+                                                <input type="checkbox" class="i-checks">
+                                            </td>
+                                            <td class="mail-ontact">@item.ContactUserName</td>
+                                            <td class="mail-ontact">@item.ContactMail</td>
+                                            <td class="mail-subject">@item.ContactSubject</td>
+                                            <td class=""><i class="fa fa-paperclip"></i></td>
+                                            <td class="text-right mail-date">@(((DateTime)item.ContactDate).ToString("dd-MMM-yy"))</td>
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+                            <br />
+                            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+      
+
+ 
+
+
+
+
+

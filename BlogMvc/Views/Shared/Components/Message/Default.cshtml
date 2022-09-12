@@ -1,0 +1,35 @@
+﻿@using EntityLayer.Concrete
+@model List<Contact>
+<li class="dropdown">
+    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+        <i class="fa fa-envelope"></i>  <span class="label label-warning">@ViewBag.count</span>
+    </a>
+    <ul class="dropdown-menu dropdown-messages">
+        @foreach (var item in Model)
+        {
+            <li>
+                <div class="dropdown-messages-box">
+                    <a class="dropdown-item float-left" href="/Admin/Contacts/Index/">
+                        <img alt="image" class="rounded-circle" src="/CoreBlogTema/admin/img/a3.jpg">
+                    </a>
+                    <div class="media-body">
+                        <small class="float-right">@(((DateTime) item.ContactDate).ToString("dd-MMM-yy"))</small>
+                        <strong>@item.ContactUserName</strong> Sent Message to website <strong></strong>. <br>
+
+                    </div>
+                </div>
+            </li>
+            <li class="dropdown-divider"></li>
+        }
+
+        <li>
+            <div class="text-center link-block">
+                <a href="/Admin/Contacts/Index/" class="dropdown-item">
+                    <strong>See All Messages</strong>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+        </li>
+
+    </ul>
+</li>

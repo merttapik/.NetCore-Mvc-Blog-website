@@ -1,0 +1,28 @@
+﻿@model EntityLayer.Concrete.About
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Edit About Section </h1>
+<br />
+@using (Html.BeginForm("Edit", "About", FormMethod.Post))
+{
+    @Html.Label("About Id")
+    @Html.TextBoxFor(x => x.AboutId, new { @class = "form-control" })
+    <br />
+    @Html.Label("About Details")
+    @Html.TextBoxFor(x => x.AboutDetails,  new { @class = "form-control" })
+    <br />
+    @Html.Label("About Details2")
+    @Html.TextAreaFor(x => x.AboutDtails2, 15, 3, new { @class = "form-control" })
+    <br />
+    @Html.Label("About Image")
+    @Html.TextBoxFor(x => x.AboutImage1, new { @class = "form-control" })
+
+    <br />
+    @Html.Label("About Image2")
+    @Html.TextBoxFor(x => x.AboutImage2,  new { @class = "form-control" })
+    <br />
+    <button type="submit" class="btn btn-dark mr-2 my-5">Save Changes</button>
+}

@@ -16,9 +16,7 @@ namespace BlogMvc.Controllers
         }
         public PartialViewResult AdminNavbarPartial()
         {
-            var usermail = User.Identity.Name;
-            var writerId = c.Writers.Where(x => x.WriterName == usermail).Select(y => y.WriterName).FirstOrDefault();
-            ViewBag.v1 = writerId;
+           
             return PartialView();
         }
     }

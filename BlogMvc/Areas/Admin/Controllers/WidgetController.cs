@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using DataAccessLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,10 @@ namespace BlogMvc.Areas.Admin.Controllers
     {
         public IActionResult Index()
         {
+            Context c = new Context();
+            var usermail = User.Identity.Name;
+            var writerId = c.Writers.Where(x => x.WriterName == usermail).Select(y => y.WriterName).FirstOrDefault();
+            ViewBag.name = writerId;
             return View();
         }
     }

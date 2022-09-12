@@ -18,9 +18,34 @@ namespace BusinessLayer.Concrete
             _contactDal = contactDal;
         }
 
+        public void Add(Contact t)
+        {
+            throw new NotImplementedException();
+        }
+
         public void ContactAdd(Contact contact)
         {
             _contactDal.Insert(contact);
+        }
+
+        public void Delete(Contact t)
+        {
+             _contactDal.Delete(t);
+        }
+
+        public Contact GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Contact> GetListAll()
+        {
+            return _contactDal.GetListAll();
+        }
+
+        public void Update(Contact t)
+        {
+            throw new NotImplementedException();
         }
     }
 }

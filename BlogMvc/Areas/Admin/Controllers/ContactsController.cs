@@ -1,9 +1,5 @@
 ﻿using BusinessLayer.Concrete;
-using BusinessLayer.ValidationRules;
-using DataAccessLayer.Concrete;
 using DataAccessLayer.Concrete.EntityFramework;
-using EntityLayer.Concrete;
-using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -16,16 +12,14 @@ namespace BlogMvc.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize(Roles = "Admin")]
-    public class BlogsController : Controller
+    public class ContactsController : Controller
     {
-        BlogManager bm = new BlogManager(new EfBlogRepository());
-        Context c = new Context();
-        public IActionResult Index(int page = 1)
+        ContactManager cm = new ContactManager(new EfContactRepository());
+        public IActionResult Index(int page=1)
         {
-          
-            var values = bm.GetWithCategory().ToPagedList(page, 5);
+            var values = cm.GetListAll().ToPagedList(page, 5);
+            ViewBag.v1 = values.Count();
             return View(values);
         }
-      
     }
 }

@@ -1,0 +1,42 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<EntityLayer.Concrete.Comment>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Comments</h1>
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Comment User</th>
+        <th>Comment Title</th>
+        <th>Comment Date</th>
+        <th>Score for Blog</th>
+        <th>Blog Title </th>
+        <th>Make Passive</th>
+        <th>Make Active</th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.CommentId</td>
+            <td>@item.CommentUserName</td>
+            <td>@item.CommentTitle</td>
+            <td>@(((DateTime) item.CommentDate).ToString("dd-MMM-yy"))</td>
+            <td>@item.BlogScore</td>
+            <td>@item.Blog.BlogTitle</td>
+            <td><a href="#" class="btn btn-danger">Make Passive</a></td>
+            <td><a href="#" class="btn btn-primary">Make Active</a></td>
+
+        </tr>
+    }
+</table>
+<br />
+<br />
+<br />
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }))
+

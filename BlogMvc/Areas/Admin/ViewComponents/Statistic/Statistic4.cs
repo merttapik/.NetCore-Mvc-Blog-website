@@ -18,6 +18,9 @@ namespace BlogMvc.Areas.Admin.ViewComponents.Statistic
             ViewBag.v1 = c.Writers.Where(x => x.WriterName == usermail).Select(y => y.WriterName).FirstOrDefault();
             ViewBag.v2 = c.Writers.Where(x => x.WriterName == usermail).Select(y => y.WriterImage).FirstOrDefault();
             ViewBag.v3 = c.Writers.Where(x => x.WriterName == usermail).Select(y => y.WriterAbout).FirstOrDefault();
+            ViewBag.v4 = c.Writers.Count();
+            ViewBag.v5 = c.Notifications.Count();
+            ViewBag.v6 = c.NewsLetters.Count();
             return View();
         }
     }

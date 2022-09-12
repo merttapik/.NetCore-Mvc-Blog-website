@@ -16,7 +16,8 @@ namespace DataAccessLayer.Concrete.EntityFramework
         {
             using(var c = new Context())
             {
-                return c.Blogs.Include(x => x.Category).ToList();//CATEGORY İSMİNİ CAGIRMAK İCİN
+                return c.Blogs.Include(x => x.Category).Include(x=>x.Writer).ToList();//CATEGORY İSMİNİ CAGIRMAK İCİN
+
             }
         }
 

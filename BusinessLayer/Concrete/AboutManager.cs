@@ -18,9 +18,29 @@ namespace BusinessLayer.Concrete
             _aboutDal = aboutDal;
         }
 
+        public void Add(About t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(About t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public About GetById(int id)
+        {
+            return _aboutDal.GetById(id);
+        }
+
         public List<About> GetListAll()
         {
           return   _aboutDal.GetListAll();   
+        }
+
+        public void Update(About t)
+        {
+            _aboutDal.Update(t);
         }
     }
 }
